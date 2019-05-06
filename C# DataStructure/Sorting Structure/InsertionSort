@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace InsertionSort
+{
+ 
+    class Program
+    {
+        static int InsertionSorting()
+        {
+            Console.Write("Entre com o numero de elementos: ");
+            int max = Convert.ToInt32(Console.ReadLine());
+            int[] numvet = new int[max];
+            for (int i = 0; i < max; i++)
+            {
+                Console.Write("Entre com o elemento para a posição [" + (i + 1).ToString() + "]: ");
+                numvet[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine("Numeros iniciais: ");
+            for (int k = 0; k < max; k++)
+                Console.WriteLine(numvet[k] + " ");
+            for (int i = 1; i < max; i++)
+            {
+                int j = i;
+                while (j > 0)
+                {
+                    if (numvet[j - 1] > numvet[j])
+                    {
+                        int temp = numvet[j - 1];
+                        numvet[j - 1] = numvet[j];
+                        numvet[j] = temp;
+                        j--;
+                    }
+                    else
+                        break;
+                }
+                Console.WriteLine("Iteração " + i.ToString() + ": ");
+                for (int k = 0; k < max; k++)
+                    Console.WriteLine(numvet[k] + " ");
+                
+                //Console.Write("/*** " + (i + 1).ToString() + " numbers from the begining of the array are input and they are sorted ***/\n");    
+            }
+            Console.WriteLine("Os números em ordens ascendentes são:");
+            for (int i = 0; i < max; i++)
+            {
+                Console.WriteLine("Classificado [" + (i + 1).ToString() + "] elemento: ");
+                Console.WriteLine(numvet[i]);
+               
+            }
+            return 0;
+        }
+        static void Main(string[] args)
+        {
+            InsertionSorting();
+            Console.ReadLine();
+        }
+    }
+}
+

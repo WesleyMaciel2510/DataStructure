@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    class Program
+    {
+        static Queue<int> Fila = new Queue<int>();
+
+        static void Enfileirar(int valor)
+        {
+            Fila.Enqueue(valor);
+
+        }
+        static void Desenfileirar()
+        {
+            if (Fila.Count > 0)
+            {
+                Fila.Dequeue();
+                Fila.TrimExcess();
+            }
+            else
+            {
+                Console.Write("Estrutura Vazia.");
+            }
+        }
+        static void mostraTopo ()
+        {
+            Console.Write(Fila.Peek().ToString());
+
+        }
+        static void Imprimir()
+        {
+            foreach (int i in Fila)
+                Console.Write(i.ToString()+ " - ");
+        }
+
+        static void Main(string[] args)
+        {
+            int Op, vl;
+            do
+            {
+
+                Console.WriteLine("1 - Enfileirar");
+                Console.WriteLine("2 - Desenfileirar");
+                Console.WriteLine("3 - Mostrar Topo");
+                Console.WriteLine("4 - Imprimir");
+                Op = int.Parse(Console.ReadLine());
+                Console.Clear();
+
+                switch (Op)
+                {
+                    case 1:
+                        Console.WriteLine("Digite o valor:");
+                        vl = int.Parse(Console.ReadLine());
+                        Enfileirar(vl);
+
+                        break;
+
+                    case 2:
+                        Desenfileirar();
+                        break;
+
+                    case 3:
+                        mostraTopo();
+                        break;
+
+                    case 4:
+                        Imprimir();
+                        break;
+                }
+            } while (Op != 0);
+
+        }
+    }
+}

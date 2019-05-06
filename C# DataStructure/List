@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp3
+{
+    class Program
+    {
+        static List<int> Lista = new List<int>();
+
+        static void Inserir(int valor)
+        {
+            Lista.Add(valor);
+
+        }
+        static void Remover(int valor)
+        {
+            if (Lista.Count > 0)
+            {
+                Lista.Remove(valor);
+                Lista.TrimExcess();
+            }
+            else
+            {
+                Console.Write("Estrutura Vazia.");
+            }
+        }
+        static void Consultar()
+        {
+            Lista.Sort();
+            Console.WriteLine("A lista tem " + Lista.Count + " itens: ");
+
+        }
+        static void Imprimir()
+        {
+            Lista.ForEach(i => Console.WriteLine(i));
+            //Console.Write(i.ToString() + " - ");
+        }
+
+        static void Main(string[] args)
+        {
+            int Op, vl;
+            do
+            {
+
+                Console.WriteLine("1 - Inserir");
+                Console.WriteLine("2 - Remover");
+                Console.WriteLine("3 - Consultar");
+                Console.WriteLine("4 - Imprimir");
+                Op = int.Parse(Console.ReadLine());
+                Console.Clear();
+
+                switch (Op)
+                {
+                    case 1:
+                        Console.WriteLine("Digite o valor:");
+                        vl = int.Parse(Console.ReadLine());
+                        Inserir(vl);
+
+                        break;
+
+                    case 2:
+                        Console.WriteLine("Digite o valor:");
+                        vl = int.Parse(Console.ReadLine());
+                        Remover(vl);
+                        break;
+
+                    case 3:
+                        Consultar();
+                        break;
+
+                    case 4:
+                        Imprimir();
+                        break;
+                }
+            } while (Op != 0);
+            Console.ReadKey();
+        }
+    }
+}

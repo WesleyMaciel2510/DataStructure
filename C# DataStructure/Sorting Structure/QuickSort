@@ -1,0 +1,83 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace QuickSort
+{
+    class Program
+    {
+        private static void QuickSort(int[] vetor, int esquerda, int direita) 
+        {
+            if (esquerda < direita)
+            {
+                int pivo = Particao(vetor, esquerda, direita);
+
+                if (pivo > 1) {
+                    QuickSort(vetor, esquerda, pivo - 1);
+                }
+                if (pivo + 1 < direita) {
+                    QuickSort(vetor, pivo + 1, direita);
+                }
+            }
+        
+        }
+
+        //particionar entre: esquerda do pivo, direita do pivo 
+        private static int Particao(int[] vetor, int esquerda, int direita)
+        {
+            int pivo = vetor[esquerda];
+            while (true) 
+            {
+
+                while (vetor[esquerda] < pivo) 
+                {
+                    esquerda++;
+                }
+
+                while (vetor[direita] > pivo)
+                {
+                    direita--;
+                }
+
+                if (esquerda < direita)
+                {
+                    if (vetor[esquerda] == vetor[direita]) return direita;
+
+                    int temp = vetor[esquerda];
+                    vetor[esquerda] = vetor[direita];
+                    vetor[direita] = temp;
+
+
+                }
+                else 
+                {
+                    return direita;
+                }
+            }
+        }
+        
+        static void Main(string[] args)
+        {
+            int[] vetor = new int[] { 42, 58, 77, 25, 63, 90, 92, 75, 14, 2 };
+
+            Console.WriteLine("Vetor Original : ");
+            foreach (var item in vetor)
+            {
+                Console.Write(" " + item);    
+            }
+            Console.WriteLine();
+
+            QuickSort(vetor, 0, vetor.Length-1);
+            
+            Console.WriteLine();
+            Console.WriteLine("Vetor Ordenado : ");
+           
+		   foreach (var item in vetor)
+            {
+                Console.Write(" " + item);
+            }
+            Console.ReadKey();
+                    }
+    }
+}  

@@ -1,0 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MergeSort
+{
+    class MergeSort
+    {
+        static void MainMerge(int[] numeros, int esquerda, int meio, int direita)
+        {
+            int[] temp = new int[numeros.Length];
+            int i, eol, num, pos;
+
+            eol = (meio - 1);
+            pos = esquerda;
+            num = (direita - esquerda + 1);
+
+            while ((esquerda <= eol) && (meio <= direita))
+            {
+                if (numeros[esquerda] <= numeros[meio])
+                    temp[pos++] = numeros[meio++];
+                else
+                    temp[pos++] = numeros[esquerda++];
+
+            }
+
+            while (esquerda <= eol)
+                temp[pos++] = numeros[esquerda++];
+
+            while (meio <= direita)
+                temp[pos++] = numeros[meio++];
+
+            for (i = 0; i < num; i++)
+            {
+                numeros[direita] = temp[direita];
+                direita--;
+            }
+
+        }
+
+
+        static public void SortMerge(int[] numeros, int esquerda, int direita)
+        {
+            int meio;
+
+            if (direita > esquerda)
+            {
+                meio = (direita + esquerda) / 2;
+                SortMerge(numeros, esquerda, meio);
+                SortMerge(numeros, (meio + 1), direita);
+
+                MainMerge(numeros, esquerda, (meio + 1), direita);
+
+            }
+
+        }
+        static void Main(string[] args)
+        {
+            Console.Write("Entre com o numero de elementos: ");
+            int max = Convert.ToInt32(Console.ReadLine());
+
+            int[] numeros = new int[max];
+
+            for (int i = 0; i < max; i++)
+            {
+                Console.Write("Entre [" + (i + 1).ToString() + "] com o elemento: ");
+                numeros[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.Write("Numeros digitados: ");
+            Console.Write("\n");
+
+            for (int k = 0; k < max; k++)
+            {
+                Console.Write(numeros[k] + " ");
+                Console.Write("\n");
+            }
+            Console.WriteLine("Numeros pela ordem decrescente: ");
+            SortMerge(numeros, 0, max - 1);
+
+            for (int i = 0; i < max; i++)
+                Console.WriteLine(numeros[i]);
+            Console.ReadLine();
+
+
+        }
+    }
+}

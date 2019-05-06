@@ -1,0 +1,72 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static Stack<int> pilha = new Stack<int>();
+
+        static void inserir(int num)
+        {
+            pilha.Push(num);
+        }
+
+        static void imprimir()
+        {
+            foreach (int i in pilha)
+                Console.Write(i.ToString() + "- ");
+            Console.ReadKey();
+        }
+
+        static void topo()
+        {
+            int tp = pilha.Peek();
+            Console.WriteLine(tp.ToString());
+        }
+
+        static void Main(string[] args)
+        {
+
+            int Op, vl;
+
+
+            do
+            {
+
+                Console.WriteLine("1 - Inserir");
+                Console.WriteLine("2 - Remover");
+                Console.WriteLine("3 - Imprimir");
+                Console.WriteLine("4 - Mostrar Valor no Topo");
+                Op = int.Parse(Console.ReadLine());
+                Console.Clear();
+
+                switch (Op)
+                {
+                    case 1:
+                        Console.WriteLine("Digite o valor:");
+                        vl = int.Parse(Console.ReadLine());
+                        pilha.Push(vl);
+
+                        break;
+
+                    case 2:
+
+                        break;
+
+                    case 3:
+                        imprimir();
+                        break;
+
+                    case 4:
+                        topo();
+                        break;
+                }
+            } while (Op != 0);
+            Console.ReadKey();
+        }
+    }
+}
