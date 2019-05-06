@@ -1,1 +1,64 @@
-...
+using System;
+using System.Collections.Generic;
+
+    public class BinarySearch
+    {
+    public static void Main()
+    {
+        string[] dinossauros = {"Pachycephalosaurus", 
+                              "Amargasaurus", 
+                              "Tyrannosaurus", 
+                              "Mamenchisaurus", 
+                              "Deinonychus", 
+                              "Edmontosaurus"};
+
+        Console.WriteLine();
+        foreach( string dinossauro in dinossauros )
+        {
+            Console.WriteLine(dinossauro);
+        }
+
+        Console.WriteLine("\nOrdem");
+        Array.Sort(dinossauros);
+
+        Console.WriteLine();
+        foreach( string dinossauro in dinossauros )
+        {
+            Console.WriteLine(dinossauro);
+        }
+	
+        Console.WriteLine("Exemplo:”);
+        Console.WriteLine("\nBusca Binária por 'Coelophysis':");
+        int indice = Array.BinarySearch(dinossauros, "Coelophysis");
+        MostraPosicao(dinossauros, indice);
+
+        Console.WriteLine("\nBusca Binária for 'Tyrannosaurus':");
+        indice = Array.BinarySearch(dinossauros, "Tyrannosaurus");
+        MostraPosicao(dinossauros, indice);
+    }
+
+    private static void MostraPosicao<T>(T[] array, int indice)
+    {
+        if (indice<0)
+        {
+            indice = ~indice;
+
+            Console.Write("Não encontrado. Ordenado entre: ");
+
+            if (indice == 0)
+                Console.Write("Início do vetor e ");
+            else
+                Console.Write("{0} e ", array[indice-1]);
+
+            if (indice == array.Length)
+                Console.WriteLine("fim do vetor");
+            else
+                Console.WriteLine("{0}.", array[indice]);
+        }
+        else
+        {
+            Console.WriteLine("Encontrado no indice {0}.", indice);
+        }
+	Console.ReadKey();
+    }
+}
